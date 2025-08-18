@@ -1,9 +1,9 @@
 #include <SFML/Graphics.hpp>
-#include "GameMenu.hpp"
+#include "Menu.hpp"
 
 int main()
 {
    
 
-
+	return 0;
 }

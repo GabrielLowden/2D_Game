@@ -3,7 +3,7 @@
 class menu {
 	public:
 		//constructor
-		menu() { int width, int height };
+		menu(int width, int height) {};
 
 
 
