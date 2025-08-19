@@ -8,7 +8,7 @@ menu::menu(unsigned int width, unsigned int height, const std::string& title) {
 	window.create(sf::VideoMode({ width, height }), title);
 	//initialize font & selected item private vars
 }
-
+//
 void menu::run() {
 	while (window.isOpen()) {
 		while (const std::optional event = window.pollEvent()) {
