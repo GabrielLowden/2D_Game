@@ -8,11 +8,10 @@ int main()
 	unsigned int y = 600;
 	menu mainMenu(x, y, title);
 
-	while (mainMenu.isOpen()) {
-	//add window events...
+	mainMenu.run();
 
-	}
 
 
 	return 0;
 }
+
