@@ -6,27 +6,26 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
+#include "game.h"
 
 
 int main()
 {
     //window
-    sf::RenderWindow window(sf::VideoMode({ 600, 800 }), "A Simple Game", sf::Style::Titlebar | sf::Style::Close);
-
+    //sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "A Simple Game", sf::Style::Titlebar | sf::Style::Close);
+    Game game;
 
     //game loop
-    while (window.isOpen())
+    while (game.running())
     {
-        //event polling
-        while (const std::optional event = window.pollEvent())
-        {
-            if (event->is<sf::Event::Closed>())
-                window.close();
-            else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>())
-                if (keyPressed->scancode == sf::Keyboard::Scancode::Escape)
-                    window.close();
-        }
+        //Update
+        game.update();
+
+        //Render
+        game.render();
     }
+
+   
 
     //end of application
     return 0;
