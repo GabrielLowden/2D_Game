@@ -1,17 +1,32 @@
-#include "Menu.hpp"
-#include <string>
+#include <iostream>
+
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
+#include "game.h"
+
 
 int main()
 {
-	std::string title = "Welcome to....";
-	unsigned int x = 800;
-	unsigned int y = 600;
-	menu mainMenu(x, y, title);
+    //window
+    //sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "A Simple Game", sf::Style::Titlebar | sf::Style::Close);
+    Game game;
 
-	mainMenu.run();
+    //game loop
+    while (game.running())
+    {
+        //Update
+        game.update();
 
+        //Render
+        game.render();
+    }
 
+   
 
-	return 0;
+    //end of application
+    return 0;
 }
-
