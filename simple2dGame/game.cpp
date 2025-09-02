@@ -10,6 +10,33 @@ void Game::initWindow()
 {
 	this->videoMode.size;
 	this->window = new sf::RenderWindow(sf::VideoMode({ 800, 600 }), "A Simple Game", sf::Style::Titlebar | sf::Style::Close);
+
+	this->window->setFramerateLimit(60);
+}
+
+void Game::initEnemies()
+{
+	//Enemy starts at bottom left corner
+	this->enemy.setPosition(sf::Vector2f(50.f,500.f));
+	this->enemy.setSize(sf::Vector2f(100.f, 100.f));
+	this->enemy.setScale(sf::Vector2f(0.5f, 0.5f));
+	this->enemy.setFillColor(sf::Color::Red);
+	this->enemy.setOutlineColor(sf::Color::Green);
+	this->enemy.setOutlineThickness(1.f);
+}
+
+void Game::initProtagonist()
+{
+	this->protagonist.setPosition(sf::Vector2f(500.f, 500.f));
+	this->protagonist.setSize(sf::Vector2f(100.f, 100.f));
+	this->protagonist.setScale(sf::Vector2f(0.5f, 0.5f));
+	this->protagonist.setFillColor(sf::Color::Blue);
+	this->protagonist.setOutlineColor(sf::Color::Green);
+	this->protagonist.setOutlineThickness(1.f);
+}
+
+void Game::initBall()
+{
 }
 
 //constructor
@@ -17,6 +44,8 @@ Game::Game()
 {
 	this->initVariables();
 	this->initWindow();
+	this->initEnemies();
+	this->initProtagonist();
 
 }
 
@@ -51,6 +80,9 @@ void Game::updateEvents()
 void Game::update()
 {
 	this->updateEvents();
+
+	//update mouse position
+	//std::cout << "Mouse Position: " << sf::Mouse::getPosition().x << " " << sf::Mouse::getPosition().y << std::endl;
 }
 
 void Game::render()
@@ -65,8 +97,35 @@ void Game::render()
 	this->window->clear(sf::Color::Black);
 
 	//Draw game objects
+	this->window->draw(this->enemy);
+	this->window->draw(this->protagonist);
 
 	this->window->display();
 
 
+}
+
+void Game::updateEnemies()
+{
+
+}
+
+void Game::renderEnemies()
+{
+}
+
+void Game::updateProtagonist()
+{
+}
+
+void Game::renderProtagonist()
+{
+}
+
+void Game::updateBall()
+{
+}
+
+void Game::renderBall()
+{
 }
