@@ -17,8 +17,8 @@ void Game::initWindow()
 void Game::initEnemies()
 {
 	//Enemy starts at bottom left corner
-	this->enemy.setPosition(sf::Vector2f(50.f,500.f));
-	this->enemy.setSize(sf::Vector2f(100.f, 100.f));
+	this->enemy.setPosition(sf::Vector2f(30.f,250.f));
+	this->enemy.setSize(sf::Vector2f(50.f, 200.f));
 	this->enemy.setScale(sf::Vector2f(0.5f, 0.5f));
 	this->enemy.setFillColor(sf::Color::Red);
 	this->enemy.setOutlineColor(sf::Color::Green);
@@ -27,8 +27,8 @@ void Game::initEnemies()
 
 void Game::initProtagonist()
 {
-	this->protagonist.setPosition(sf::Vector2f(500.f, 500.f));
-	this->protagonist.setSize(sf::Vector2f(100.f, 100.f));
+	this->protagonist.setPosition(sf::Vector2f(745.f, 250.f));
+	this->protagonist.setSize(sf::Vector2f(50.f, 200.f));
 	this->protagonist.setScale(sf::Vector2f(0.5f, 0.5f));
 	this->protagonist.setFillColor(sf::Color::Blue);
 	this->protagonist.setOutlineColor(sf::Color::Green);
@@ -37,6 +37,9 @@ void Game::initProtagonist()
 
 void Game::initBall()
 {
+	this->ball.setPosition(sf::Vector2f(375.f, 275.f));
+	this->ball.setRadius(25.f);
+	this->ball.setFillColor(sf::Color::White);
 }
 
 //constructor
@@ -46,6 +49,8 @@ Game::Game()
 	this->initWindow();
 	this->initEnemies();
 	this->initProtagonist();
+	this->initBall();
+
 
 }
 
@@ -97,6 +102,7 @@ void Game::render()
 	this->window->clear(sf::Color::Black);
 
 	//Draw game objects
+	this->window->draw(this->ball);
 	this->window->draw(this->enemy);
 	this->window->draw(this->protagonist);
 
