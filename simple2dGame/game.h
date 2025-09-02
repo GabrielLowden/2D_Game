@@ -18,9 +18,23 @@ private:
 	//Variabels
 	sf::RenderWindow* window;
 	sf::VideoMode videoMode;
+
+	//Game Objects
+	
+	//left player
+	sf::RectangleShape enemy;
+	//right player
+	sf::RectangleShape protagonist;
+	//pong ball
+	sf::CircleShape ball;
+
 	//Private Functinos
 	void initVariables();
 	void initWindow();
+	void initEnemies();
+	void initProtagonist();
+	void initBall();
+	
 public:
 	//constructors & destructors
 	Game();
@@ -33,5 +47,12 @@ public:
 	void updateEvents();
 	void update();
 	void render();
+	void updateEnemies();
+	void renderEnemies();
+	void updateProtagonist();
+	void renderProtagonist();
+	void updateBall();
+	void renderBall();
+
 };
 
