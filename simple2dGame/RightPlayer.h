@@ -11,14 +11,18 @@ class RightPlayer
 private:
 	sf::RectangleShape rPaddle;
 
+	float movementSpeed;
+
 	void initRightVariables();
 	void initRightPaddle();
 
 public:
-	RightPlayer();
+	RightPlayer(float x = 745.f, float y = 250.f);
 	virtual ~RightPlayer();
 
-	void updateRPaddle();
+	void updateInput();
+	void updateWindowBoundsCollision(const sf::RenderTarget* target);
+	void updateRPaddle(const sf::RenderTarget* target);
 	void renderR(sf::RenderTarget* target);
 
 };

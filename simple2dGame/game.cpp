@@ -57,6 +57,8 @@ void Game::updateEvents()
 void Game::update()
 {
 	this->updateEvents();
+	
+	this->rightPlayer.updateRPaddle(this->window);
 
 	//update mouse position
 	//std::cout << "Mouse Position: " << sf::Mouse::getPosition().x << " " << sf::Mouse::getPosition().y << std::endl;

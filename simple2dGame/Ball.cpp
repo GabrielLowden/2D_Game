@@ -9,7 +9,7 @@ void Ball::initBallVariables()
 void Ball::initBall()
 {
 	this->ball.setPosition(sf::Vector2f(375.f, 275.f));
-	this->ball.setRadius(25.f);
+	this->ball.setRadius(15.f);
 	this->ball.setFillColor(sf::Color::White);
 }
 
