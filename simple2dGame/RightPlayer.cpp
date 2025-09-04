@@ -43,6 +43,7 @@ void RightPlayer::updateInput()
 	{
 		this->rPaddle.move(sf::Vector2f(0.f, -this->movementSpeed));
 	}
+	//move down
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Down))
 	{
 		this->rPaddle.move(sf::Vector2f(0.f, this->movementSpeed));
@@ -57,6 +58,7 @@ void RightPlayer::updateWindowBoundsCollision(const sf::RenderTarget* target)
 	{
 		this->rPaddle.setPosition(sf::Vector2f(paddlePos.x, 0.f));
 	}
+	//bottom window collision
 	else if (this->rPaddle.getPosition().y >= 500.f) 
 	{
 		this->rPaddle.setPosition(sf::Vector2f(paddlePos.x, 500.f));
@@ -69,7 +71,7 @@ void RightPlayer::updateRPaddle(const sf::RenderTarget* target)
 	//window bounds collision
 	this->updateWindowBoundsCollision(target);
 
-
+	//update input
 	this->updateInput();
 }
 

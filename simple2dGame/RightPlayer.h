@@ -17,7 +17,7 @@ private:
 	void initRightPaddle();
 
 public:
-	RightPlayer(float x = 745.f, float y = 250.f);
+	RightPlayer(float x = 750.f, float y = 250.f);
 	virtual ~RightPlayer();
 
 	void updateInput();

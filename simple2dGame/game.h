@@ -2,6 +2,8 @@
 
 //libraries
 #include <iostream>
+#include <string>
+#include <sstream>>
 
 //SFML
 #include <SFML/Graphics.hpp>
@@ -26,8 +28,11 @@ private:
 	sf::VideoMode videoMode;
 
 	//Game logic
-	int enemyScore;
-	int protagonistScore;
+	int leftScore;
+	int rightScore;
+
+	sf::Font font;
+	sf::Text guiText;
 
 	//create instances of players & ball
 	LeftPlayer leftPlayer;
@@ -37,6 +42,9 @@ private:
 	//Private Functinos
 	void initVariables();
 	void initWindow();
+	void initFont();
+	void initText();
+
 	
 public:
 	//constructors & destructors
@@ -47,8 +55,12 @@ public:
 	const bool running() const;
 
 	//Functions
+	void updateCollisions();
 	void updateEvents();
+	void updateGui();
 	void update();
+
+	void renderGui(sf::RenderTarget* target);
 	void render();
 
 };

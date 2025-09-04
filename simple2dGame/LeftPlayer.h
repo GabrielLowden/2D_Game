@@ -11,15 +11,21 @@ class LeftPlayer
 private:
 	sf::RectangleShape lPaddle;
 
+	float movementSpeed;
+
 	void initLeftVariables();
 	void initLeftPaddle();
 
-
 public:
-	LeftPlayer();
+	LeftPlayer(float x = 25.f, float y = 250.f);
 	virtual ~LeftPlayer();
 
-	void updateLPaddle();
+	const sf::RectangleShape getPaddle() const;
+
+	void updateLInput();
+	//passing target to these functions is not necessary after SFML v3.0.
+	void updateLWindowBoundsCollision(const sf::RenderTarget* target);
+	void updateLPaddle(const sf::RenderTarget* target);
 	void renderL(sf::RenderTarget* target);
 
 

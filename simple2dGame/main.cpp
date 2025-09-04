@@ -1,16 +1,13 @@
 #include <iostream>
 
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
 #include "game.h"
 
 
 int main()
 {
+    //initialize random seed
+    srand(static_cast<unsigned>(time(0)));
+
     //window
     //sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "A Simple Game", sf::Style::Titlebar | sf::Style::Close);
     Game game;
