@@ -1,16 +1,24 @@
 #pragma once
 
+//libraries
 #include <iostream>
+#include <string>
+#include <sstream>>
 
+//SFML
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
-//class that acts as game engine.
+//classes
+#include "LeftPlayer.h"
+#include "RightPlayer.h"
+#include "Ball.h"
 
+
+//class that acts as game engine.
 
 class Game
 {
@@ -18,22 +26,33 @@ private:
 	//Variabels
 	sf::RenderWindow* window;
 	sf::VideoMode videoMode;
+	sf::Clock scoreClock;
+	bool endGame;
 
-	//Game Objects
-	
-	//left player
-	sf::RectangleShape enemy;
-	//right player
-	sf::RectangleShape protagonist;
-	//pong ball
-	sf::CircleShape ball;
+	//Game logic
+	int leftScore;
+	int rightScore;
+	bool lScore;
+	bool rScore;
+	bool showingScore;
+
+	sf::Font font;
+	sf::Text guiText;
+	sf::Text rightScoreText;
+	sf::Text leftScoreText;
+	sf::Text winner;
+
+	//create instances of players & ball
+	LeftPlayer leftPlayer;
+	RightPlayer rightPlayer;
+	Ball ball;
 
 	//Private Functinos
 	void initVariables();
 	void initWindow();
-	void initEnemies();
-	void initProtagonist();
-	void initBall();
+	void initFont();
+	void initText();
+
 	
 public:
 	//constructors & destructors
@@ -42,17 +61,17 @@ public:
 
 	//Accessors
 	const bool running() const;
+	const bool& getEndGame() const;
 
 	//Functions
+	void updateScoreKeeping();
+	void updateCollisions();
 	void updateEvents();
+	void updateGui();
 	void update();
+
+	void renderGui(sf::RenderTarget* target);
 	void render();
-	void updateEnemies();
-	void renderEnemies();
-	void updateProtagonist();
-	void renderProtagonist();
-	void updateBall();
-	void renderBall();
 
 };
 
