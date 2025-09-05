@@ -35,6 +35,11 @@ RightPlayer::~RightPlayer()
 	
 }
 
+const sf::RectangleShape RightPlayer::getRightPaddle() const
+{
+	return this->rPaddle;
+}
+
 void RightPlayer::updateInput()
 {
 	//keyboard input

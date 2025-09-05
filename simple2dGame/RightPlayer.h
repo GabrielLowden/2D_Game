@@ -20,6 +20,8 @@ public:
 	RightPlayer(float x = 750.f, float y = 250.f);
 	virtual ~RightPlayer();
 
+	const sf::RectangleShape getRightPaddle() const;
+
 	void updateInput();
 	void updateWindowBoundsCollision(const sf::RenderTarget* target);
 	void updateRPaddle(const sf::RenderTarget* target);

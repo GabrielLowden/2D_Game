@@ -11,6 +11,7 @@ class Ball
 private:
 	//pong ball
 	sf::CircleShape ball;
+	sf::Vector2f velocity;
 
 	//movement speed
 	float movementSpeed;
@@ -26,7 +27,10 @@ public:
 	const sf::CircleShape& getBall() const;
 
 	//functinons
+	void resetBall();
 	void updateBallWindowsCollision();
+	sf::Vector2f getBallVelocity();
+	void setBallVelocity(int x, int y);
 	void updateBall();
 	void renderBall(sf::RenderTarget* target);
 
