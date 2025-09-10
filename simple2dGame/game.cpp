@@ -34,11 +34,16 @@ void Game::initFont()
 
 void Game::initText()
 {
-	//guiText
-	this->guiText.setFont(this->font);
-	this->guiText.setFillColor(sf::Color::Green);
-	this->guiText.setCharacterSize(40);
-	this->guiText.setPosition(sf::Vector2f(500.f, 0.f));
+	//score counts on screen
+	this->rightScoreCount.setFont(this->font);
+	this->rightScoreCount.setFillColor(sf::Color::Green);
+	this->rightScoreCount.setCharacterSize(40);
+	this->rightScoreCount.setPosition(sf::Vector2f(610.f, 0.f));
+
+	this->leftScoreCount.setFont(this->font);
+	this->leftScoreCount.setFillColor(sf::Color::Green);
+	this->leftScoreCount.setCharacterSize(40);
+	this->leftScoreCount.setPosition(sf::Vector2f(10.f, 0.f));
 
 	//rightScore
 	this->rightScoreText.setFillColor(sf::Color::Green);
@@ -59,7 +64,8 @@ void Game::initText()
 //constructor
 Game::Game()
 	: font{}
-	, guiText(font)
+	, rightScoreCount(font)
+	, leftScoreCount(font)
 	, winner(font)
 	, rightScoreText(font)
 	, leftScoreText(font)
@@ -90,21 +96,6 @@ const bool& Game::getEndGame() const
 }
 
 
-void Game::updateScoreKeeping()
-{
-	if (this->rScore)
-	{
-		showingScore = true;
-		scoreClock.restart();	
-	}
-
-	if (this->lScore)
-	{
-		showingScore = true;
-		scoreClock.restart();
-	}
-
-}
 
 void Game::updateCollisions()
 {
@@ -113,6 +104,8 @@ void Game::updateCollisions()
 	{
 		//reset the ball & give right player point
 		rScore = true;
+		rightScore++;
+		this->ball.resetBall();
 
 	}
 	//check if ball hits right window border
@@ -120,6 +113,8 @@ void Game::updateCollisions()
 	{
 		//reset the ball & give left player point
 		lScore = true;
+		leftScore++;
+		this->ball.resetBall();
 	}
 
 	//check right paddle ball collision
@@ -154,11 +149,18 @@ void Game::updateEvents()
 
 void Game::updateGui()
 {
-	std::stringstream ss;
+	std::stringstream leftperson;
 
-	ss << "[+] Points: " << this->leftScore;
+	leftperson << "[+] Points: " << this->leftScore;
 
-	this->guiText.setString(ss.str());
+	this->leftScoreCount.setString(leftperson.str());
+
+	std::stringstream rightperson;
+
+	rightperson << "[+] Points: " << this->rightScore;
+
+	this->rightScoreCount.setString(rightperson.str());
+
 }
 
 void Game::update()
@@ -175,8 +177,6 @@ void Game::update()
 
 		this->updateCollisions();
 
-		this->updateScoreKeeping();
-
 		this->updateGui();
 	}
 
@@ -186,7 +186,8 @@ void Game::update()
 
 void Game::renderGui(sf::RenderTarget* target)
 {
-	target->draw(this->guiText);
+	target->draw(this->leftScoreCount);
+	target->draw(this->rightScoreCount);
 
 }
 
@@ -201,13 +202,15 @@ void Game::render()
 
 	this->window->clear(sf::Color::Black);
 
+	//Render gui
+	this->renderGui(this->window);
+
 	//Draw game objects
 	this->leftPlayer.renderL(this->window);
 	this->rightPlayer.renderR(this->window);
 	this->ball.renderBall(this->window);
 
-	//Render gui
-	this->renderGui(this->window);
+	
 
 	//
 	if (this->endGame == true) 
@@ -216,26 +219,6 @@ void Game::render()
 	}
 
 	//render score text
-	if (showingScore) 
-	{
-		if (scoreClock.getElapsedTime().asSeconds() < 2.f) 
-		{
-			if (rScore)
-			{
-				this->window->draw(this->rightScoreText);
-			}
-			if (lScore)
-			{
-				this->window->draw(this->leftScoreText);
-			}
-		}
-		else
-		{
-			showingScore = false;
-			this->ball.resetBall();
-			
-		}
-	}
 
 
 	this->window->display();
