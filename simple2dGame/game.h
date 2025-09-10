@@ -26,7 +26,6 @@ private:
 	//Variabels
 	sf::RenderWindow* window;
 	sf::VideoMode videoMode;
-	sf::Clock scoreClock;
 	bool endGame;
 
 	//Game logic
@@ -34,10 +33,10 @@ private:
 	int rightScore;
 	bool lScore;
 	bool rScore;
-	bool showingScore;
 
 	sf::Font font;
-	sf::Text guiText;
+	sf::Text rightScoreCount;
+	sf::Text leftScoreCount;
 	sf::Text rightScoreText;
 	sf::Text leftScoreText;
 	sf::Text winner;
@@ -64,7 +63,7 @@ public:
 	const bool& getEndGame() const;
 
 	//Functions
-	void updateScoreKeeping();
+
 	void updateCollisions();
 	void updateEvents();
 	void updateGui();
